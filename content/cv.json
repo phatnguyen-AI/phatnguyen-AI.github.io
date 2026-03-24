@@ -1,0 +1,72 @@
+{
+  "experience": [
+    {
+      "role": "Senior Machine Learning Engineer",
+      "company": "VinAI Research",
+      "period": "2023 — Present",
+      "description": "Lead development of production computer vision models for autonomous driving. Built end-to-end MLOps pipelines with MLflow, Kubeflow, and AWS SageMaker. Reduced inference latency by 40% through model optimization (pruning + quantization)."
+    },
+    {
+      "role": "Machine Learning Engineer",
+      "company": "FPT Software AI Center",
+      "period": "2021 — 2023",
+      "description": "Developed NLP models for document understanding and information extraction. Implemented Transformer-based architectures for Vietnamese text classification. Deployed models via FastAPI + Docker on AWS ECS."
+    },
+    {
+      "role": "AI Research Intern",
+      "company": "JAIST — Japan Advanced Institute of Science and Technology",
+      "period": "2020 — 2021",
+      "description": "Published 2 papers on efficient object detection. Investigated knowledge distillation techniques for deploying models on edge devices."
+    }
+  ],
+  "education": [
+    {
+      "degree": "M.Sc. Computer Science (Machine Learning Focus)",
+      "school": "Ho Chi Minh City University of Technology (HCMUT)",
+      "period": "2021 — 2023",
+      "gpa": "8.7/10.0"
+    },
+    {
+      "degree": "B.Sc. Computer Science",
+      "school": "Ho Chi Minh City University of Technology (HCMUT)",
+      "period": "2017 — 2021",
+      "gpa": "8.5/10.0 — Graduated with Honors"
+    }
+  ],
+  "skills": [
+    {
+      "category": "Programming Languages",
+      "items": ["Python", "C++", "SQL", "Bash"]
+    },
+    {
+      "category": "ML Frameworks",
+      "items": ["PyTorch", "TensorFlow", "Scikit-learn", "Hugging Face Transformers", "ONNX"]
+    },
+    {
+      "category": "MLOps & Cloud",
+      "items": ["Docker", "Kubernetes", "AWS SageMaker", "MLflow", "Kubeflow", "GitHub Actions"]
+    },
+    {
+      "category": "Data & Tools",
+      "items": ["Pandas", "NumPy", "OpenCV", "Weights & Biases", "DVC", "FastAPI"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Real-time Object Detection API",
+      "description": "Built a real-time object detection service using YOLOv8 + FastAPI. Supports batch inference, model versioning, and auto-scaling on Kubernetes. Achieved 30 FPS on NVIDIA T4 GPU.",
+      "tech": ["YOLOv8", "FastAPI", "Docker", "Kubernetes"]
+    },
+    {
+      "name": "Vietnamese Text Summarizer",
+      "description": "Fine-tuned mBART model for Vietnamese abstractive summarization. Trained on 50K news articles with custom tokenizer. Deployed as Telegram bot serving 1K+ daily users.",
+      "tech": ["mBART", "Hugging Face", "PyTorch", "Telegram API"]
+    },
+    {
+      "name": "ML Experiment Dashboard",
+      "description": "Built an internal dashboard for tracking ML experiments across teams. Integrated MLflow, Weights & Biases, and custom visualizations. Reduced experiment debugging time by 60%.",
+      "tech": ["React", "MLflow API", "PostgreSQL", "D3.js"]
+    }
+  ],
+  "achievements": []
+}

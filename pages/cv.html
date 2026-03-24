@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Alex Nguyen</title>
+  <meta name="description"
+    content="Curriculum Vitae of Alex Nguyen — Machine Learning Engineer with experience in computer vision, NLP, and MLOps.">
+  <meta property="og:title" content="CV — Alex Nguyen">
+  <meta property="og:description" content="Professional experience, education, skills, and projects.">
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="container nav__inner">
+      <a href="../index.html" class="nav__logo" id="navLogo">PORTFOLIO</a>
+      <div class="nav__links">
+        <a href="../index.html" class="nav__link">Home</a>
+        <a href="blog.html" class="nav__link">Blog</a>
+        <a href="research.html" class="nav__link">Research</a>
+        <a href="cv.html" class="nav__link nav__link--active">CV</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+      </div>
+      <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav__mobile-overlay" id="navMobileOverlay">
+    <a href="../index.html" class="nav__link">Home</a>
+    <a href="blog.html" class="nav__link">Blog</a>
+    <a href="research.html" class="nav__link">Research</a>
+    <a href="cv.html" class="nav__link">CV</a>
+    <a href="contact.html" class="nav__link">Contact</a>
+  </div>
+
+  <main class="container">
+    <div class="page-header">
+      <h1 class="page-header__title">Curriculum Vitae</h1>
+      <p class="page-header__subtitle">Professional experience, education, and technical skills</p>
+    </div>
+
+    <!-- Download Button -->
+    <a href="../cv_download.pdf" class="cv-download" download>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+      </svg>
+      Download PDF
+    </a>
+
+      <!-- CV Sections -->
+      <div class="cv-sections" style="flex:1;">
+        <section class="cv-section" id="section-experience">
+          <h2 class="cv-section__title">Experience</h2>
+          <div id="cvExperience"></div>
+        </section>
+
+        <section class="cv-section" id="section-projects">
+          <h2 class="cv-section__title">Projects</h2>
+          <div id="cvProjects"></div>
+        </section>
+
+        <section class="cv-section" id="section-publication">
+          <h2 class="cv-section__title">Publications</h2>
+          <div id="cvPublications"></div>
+        </section>
+
+        <section class="cv-section" id="section-skills">
+          <h2 class="cv-section__title">Skills</h2>
+          <div class="cv-skills-grid" id="cvSkills"></div>
+        </section>
+
+        <section class="cv-section" id="section-education">
+          <h2 class="cv-section__title">Education</h2>
+          <div id="cvEducation"></div>
+        </section>
+
+        <section class="cv-section" id="section-achievements">
+          <h2 class="cv-section__title">Achievements</h2>
+          <div id="cvAchievements"></div>
+        </section>
+      </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copyright">© 2024 Alex Nguyen. All rights reserved.</p>
+      <div class="footer__links">
+        <a href="../index.html" class="footer__link">Home</a>
+        <a href="blog.html" class="footer__link">Blog</a>
+        <a href="research.html" class="footer__link">Research</a>
+        <a href="cv.html" class="footer__link">CV</a>
+        <a href="contact.html" class="footer__link">Contact</a>
+      </div>
+      <div class="footer__social" id="footerSocial"></div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+
+</html>

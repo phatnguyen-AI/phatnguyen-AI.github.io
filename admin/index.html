@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
+</head>
+
+<body>
+
+  <!-- Login Screen -->
+  <div class="admin-login" id="adminLogin">
+    <div class="admin-login__card">
+      <h1 class="admin-login__title">Admin Dashboard</h1>
+      <p class="admin-login__subtitle">Enter password to access the CMS</p>
+      <input type="password" class="admin-login__input" id="loginPassword" placeholder="Password" autofocus>
+      <button class="admin-login__btn" id="loginBtn">Login</button>
+      <p class="admin-login__error" id="loginError">Incorrect password. Please try again.</p>
+    </div>
+  </div>
+
+  <!-- Dashboard (hidden until login) -->
+  <div class="admin-dashboard" id="adminDashboard">
+
+    <!-- Mobile sidebar toggle -->
+    <button class="admin-sidebar-toggle" id="sidebarToggle">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+        <path d="M3 12h18M3 6h18M3 18h18" />
+      </svg>
+    </button>
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="admin-sidebar__logo">⚡ Admin CMS</div>
+      <nav class="admin-sidebar__nav">
+        <a href="#" class="admin-sidebar__link admin-sidebar__link--active" data-panel="profile">
+          <svg viewBox="0 0 24 24">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          Profile
+        </a>
+        <a href="#" class="admin-sidebar__link" data-panel="blog">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+          </svg>
+          Blog Posts
+        </a>
+        <a href="#" class="admin-sidebar__link" data-panel="research">
+          <svg viewBox="0 0 24 24">
+            <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2zM22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" />
+          </svg>
+          Research
+        </a>
+        <a href="#" class="admin-sidebar__link" data-panel="cv">
+          <svg viewBox="0 0 24 24">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+          </svg>
+          CV
+        </a>
+        <a href="#" class="admin-sidebar__link" data-panel="messages">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          Messages
+        </a>
+        <a href="#" class="admin-sidebar__link" data-panel="tools">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+          </svg>
+          Export / Reset
+        </a>
+      </nav>
+      <div class="admin-sidebar__footer">
+        <button class="admin-sidebar__logout" id="logoutBtn">← Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="admin-main">
+
+      <!-- Save Banner -->
+      <div class="admin-banner" id="saveBanner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+          <line x1="12" y1="9" x2="12" y2="13" />
+          <line x1="12" y1="17" x2="12.01" y2="17" />
+        </svg>
+        <span>Changes saved to localStorage only. Remember to <strong>Export JSON</strong> and commit to GitHub for
+          permanent storage!</span>
+      </div>
+
+      <!-- ===== PROFILE PANEL ===== -->
+      <div class="admin-panel active" id="panelProfile">
+        <div class="admin-main__header">
+          <h2 class="admin-main__title">Profile</h2>
+          <button class="admin-btn admin-btn--primary" id="saveProfile">Save Profile</button>
+        </div>
+        <form class="admin-form" id="profileForm">
+          <div class="admin-form__group">
+            <label class="admin-form__label">Full Name</label>
+            <input class="admin-form__input" id="profileName" type="text">
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label">Title</label>
+            <input class="admin-form__input" id="profileTitle" type="text">
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label">Greeting</label>
+            <input class="admin-form__input" id="profileGreeting" type="text">
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label">Bio</label>
+            <textarea class="admin-form__textarea" id="profileBio"></textarea>
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label">Location</label>
+            <input class="admin-form__input" id="profileLocation" type="text">
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label">Avatar URL</label>
+            <input class="admin-form__input" id="profileAvatar" type="text">
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label">Skills (comma-separated)</label>
+            <input class="admin-form__input" id="profileSkills" type="text">
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label">Email</label>
+            <input class="admin-form__input" id="profileEmail" type="email">
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label">GitHub URL</label>
+            <input class="admin-form__input" id="profileGithub" type="text">
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label">LinkedIn URL</label>
+            <input class="admin-form__input" id="profileLinkedin" type="text">
+          </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label">Twitter / X URL</label>
+            <input class="admin-form__input" id="profileTwitter" type="text">
+          </div>
+        </form>
+      </div>
+
+      <!-- ===== BLOG PANEL ===== -->
+      <div class="admin-panel" id="panelBlog">
+        <!-- Blog List View -->
+        <div id="blogListView">
+          <div class="admin-main__header">
+            <h2 class="admin-main__title">Blog Posts</h2>
+            <button class="admin-btn admin-btn--primary" id="newPostBtn">+ New Post</button>
+          </div>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="blogTableBody"></tbody>
+          </table>
+        </div>
+
+        <!-- Blog Edit View -->
+        <div id="blogEditView" style="display:none;">
+          <div class="admin-main__header">
+            <h2 class="admin-main__title" id="blogEditTitle">New Post</h2>
+            <div style="display:flex;gap:8px;">
+              <button class="admin-btn" id="cancelPostBtn">Cancel</button>
+              <button class="admin-btn admin-btn--primary" id="savePostBtn">Save Post</button>
+            </div>
+          </div>
+          <form class="admin-form" id="postForm">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md);">
+              <div class="admin-form__group">
+                <label class="admin-form__label">Title</label>
+                <input class="admin-form__input" id="postTitle" type="text" required>
+              </div>
+              <div class="admin-form__group">
+                <label class="admin-form__label">Slug</label>
+                <input class="admin-form__input" id="postSlug" type="text">
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-md);">
+              <div class="admin-form__group">
+                <label class="admin-form__label">Date</label>
+                <input class="admin-form__input" id="postDate" type="date">
+              </div>
+              <div class="admin-form__group">
+                <label class="admin-form__label">Status</label>
+                <select class="admin-form__select" id="postStatus">
+                  <option value="draft">Draft</option>
+                  <option value="published">Published</option>
+                </select>
+              </div>
+              <div class="admin-form__group">
+                <label class="admin-form__label">Read Time (min)</label>
+                <input class="admin-form__input" id="postReadTime" type="number" min="1" value="5">
+              </div>
+            </div>
+            <div class="admin-form__group">
+              <label class="admin-form__label">Tags (comma-separated)</label>
+              <input class="admin-form__input" id="postTags" type="text">
+            </div>
+            <div class="admin-form__group">
+              <label class="admin-form__label">Thumbnail URL</label>
+              <input class="admin-form__input" id="postThumbnail" type="text">
+            </div>
+            <div class="admin-form__group">
+              <label class="admin-form__label">Excerpt</label>
+              <textarea class="admin-form__textarea" id="postExcerpt" rows="2"></textarea>
+            </div>
+          </form>
+
+          <!-- Editor toggle (mobile) -->
+          <div class="admin-editor-toggle">
+            <button class="admin-editor-toggle__btn admin-editor-toggle__btn--active" id="toggleEdit">Edit</button>
+            <button class="admin-editor-toggle__btn" id="togglePreview">Preview</button>
+          </div>
+
+          <!-- Markdown Editor -->
+          <div class="admin-editor">
+            <div class="admin-editor__pane admin-editor__pane--edit">
+              <div class="admin-editor__label">Markdown</div>
+              <textarea class="admin-editor__textarea" id="postContent"
+                placeholder="Write your content in Markdown..."></textarea>
+            </div>
+            <div class="admin-editor__pane admin-editor__pane--preview">
+              <div class="admin-editor__label">Live Preview</div>
+              <div class="admin-editor__preview" id="postPreview"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== RESEARCH PANEL ===== -->
+      <div class="admin-panel" id="panelResearch">
+        <div class="admin-main__header">
+          <h2 class="admin-main__title">Research Publications</h2>
+          <button class="admin-btn admin-btn--primary" id="addResearchBtn">+ Add Publication</button>
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Paper Title</th>
+              <th>Year</th>
+              <th>Journal</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="researchTableBody"></tbody>
+        </table>
+
+        <!-- Research Edit Form (inline) -->
+        <div id="researchFormContainer"
+          style="display:none;margin-top:var(--space-xl);padding-top:var(--space-xl);border-top:1px solid var(--border-color);">
+          <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:var(--space-lg);color:var(--text-primary);"
+            id="researchFormTitle">Add Publication</h3>
+          <form class="admin-form" id="researchForm">
+            <div class="admin-form__group">
+              <label class="admin-form__label">Paper Title</label>
+              <input class="admin-form__input" id="resPaperTitle" type="text" required>
+            </div>
+            <div class="admin-form__group">
+              <label class="admin-form__label">Authors</label>
+              <input class="admin-form__input" id="resAuthors" type="text">
+            </div>
+            <div style="display:grid;grid-template-columns:2fr 1fr;gap:var(--space-md);">
+              <div class="admin-form__group">
+                <label class="admin-form__label">Journal / Conference</label>
+                <input class="admin-form__input" id="resJournal" type="text">
+              </div>
+              <div class="admin-form__group">
+                <label class="admin-form__label">Year</label>
+                <input class="admin-form__input" id="resYear" type="number">
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md);">
+              <div class="admin-form__group">
+                <label class="admin-form__label">DOI URL</label>
+                <input class="admin-form__input" id="resDoi" type="text">
+              </div>
+              <div class="admin-form__group">
+                <label class="admin-form__label">PDF URL</label>
+                <input class="admin-form__input" id="resPdf" type="text">
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <button type="button" class="admin-btn admin-btn--primary" id="saveResearchBtn">Save</button>
+              <button type="button" class="admin-btn" id="cancelResearchBtn">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ===== CV PANEL ===== -->
+      <div class="admin-panel" id="panelCv">
+        <div class="admin-main__header">
+          <h2 class="admin-main__title">CV Management</h2>
+        </div>
+
+        <!-- CV Sub-tabs -->
+        <div style="display:flex;gap:0;margin-bottom:var(--space-xl);">
+          <button class="admin-editor-toggle__btn admin-editor-toggle__btn--active" data-cvtab="experience"
+            style="display:flex;padding:8px 16px;border:1px solid var(--border-color);cursor:pointer;font-family:var(--font-primary);font-size:0.85rem;font-weight:600;">Experience</button>
+          <button class="admin-editor-toggle__btn" data-cvtab="education"
+            style="display:flex;padding:8px 16px;border:1px solid var(--border-color);cursor:pointer;font-family:var(--font-primary);font-size:0.85rem;font-weight:600;">Education</button>
+          <button class="admin-editor-toggle__btn" data-cvtab="skills"
+            style="display:flex;padding:8px 16px;border:1px solid var(--border-color);cursor:pointer;font-family:var(--font-primary);font-size:0.85rem;font-weight:600;">Skills</button>
+          <button class="admin-editor-toggle__btn" data-cvtab="projects"
+            style="display:flex;padding:8px 16px;border:1px solid var(--border-color);cursor:pointer;font-family:var(--font-primary);font-size:0.85rem;font-weight:600;">Projects</button>
+          <button class="admin-editor-toggle__btn" data-cvtab="achievements"
+            style="display:flex;padding:8px 16px;border:1px solid var(--border-color);cursor:pointer;font-family:var(--font-primary);font-size:0.85rem;font-weight:600;">Thành tích</button>
+        </div>
+
+        <!-- CV Sub-panels (rendered by JS) -->
+        <div id="cvAdminContent"></div>
+      </div>
+
+      <!-- ===== MESSAGES PANEL ===== -->
+      <div class="admin-panel" id="panelMessages">
+        <div class="admin-main__header">
+          <h2 class="admin-main__title">Messages Inbox</h2>
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>From</th>
+              <th>Title</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="messagesTableBody"></tbody>
+        </table>
+        
+        <!-- Message View Modal/Details -->
+        <div id="messageDetailView" style="display:none;margin-top:var(--space-xl);padding:var(--space-lg);border:1px solid var(--border-color);border-radius:var(--border-radius);background:#1a1d24;">
+          <h3 id="msgViewTitle" style="margin-bottom:var(--space-sm);font-size:1.2rem;"></h3>
+          <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:var(--space-md);">From: <span id="msgViewFrom" style="color:var(--text-primary);font-weight:600;"></span></p>
+          <div id="msgViewContent" style="padding:var(--space-md);background:#0f1115;border-radius:4px;white-space:pre-wrap;line-height:1.6;font-size:0.95rem;color:var(--text-primary);"></div>
+          <div style="margin-top:var(--space-md);text-align:right;">
+            <button class="admin-btn" id="closeMessageBtn">Close</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== EXPORT / RESET PANEL ===== -->
+      <div class="admin-panel" id="panelTools">
+        <div class="admin-main__header">
+          <h2 class="admin-main__title">Export & Reset</h2>
+        </div>
+        <div class="admin-actions-grid">
+          <div class="admin-action-card">
+            <h3 class="admin-action-card__title">📦 Export JSON</h3>
+            <p class="admin-action-card__desc">Download all data as JSON files. Replace files in /content/ folder and
+              commit to GitHub.</p>
+            <button class="admin-btn admin-btn--primary admin-btn--large" id="exportJsonBtn">Export All Data</button>
+          </div>
+          <div class="admin-action-card">
+            <h3 class="admin-action-card__title">🔄 Reset from Source</h3>
+            <p class="admin-action-card__desc">Restore localStorage from the original JSON files in /content/. Use when
+              data is corrupted.</p>
+            <button class="admin-btn admin-btn--danger admin-btn--large" id="resetDataBtn">Reset All Data</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+  <script src="config.js"></script>
+  <script src="../assets/js/admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "Alex Nguyen",
+  "title": "Machine Learning Engineer",
+  "greeting": "Hi, I'm Alex Nguyen.",
+  "bio": "Passionate Machine Learning Engineer with 3+ years of experience building production-grade ML systems. Specialized in computer vision, NLP, and MLOps — turning research papers into real-world impact.",
+  "location": "Ho Chi Minh City, Vietnam",
+  "avatar_url": "assets/images/avatar.jpg",
+  "skills": [
+    "Python",
+    "PyTorch",
+    "TensorFlow",
+    "Scikit-learn",
+    "Hugging Face",
+    "AWS SageMaker",
+    "Docker",
+    "MLflow",
+    "Pandas",
+    "OpenCV",
+    "ONNX",
+    "FastAPI"
+  ],
+  "social": {
+    "email": "hello@example.com",
+    "github": "https://github.com/alexnguyen",
+    "linkedin": "https://linkedin.com/in/alexnguyen",
+    "twitter": "https://twitter.com/alexnguyen_ml"
+  }
+}

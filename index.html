@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Nguyen — Machine Learning Engineer</title>
+  <meta name="description" content="Personal portfolio and blog of Alex Nguyen — Machine Learning Engineer specializing in computer vision, NLP, and MLOps.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Alex Nguyen — Machine Learning Engineer">
+  <meta property="og:description" content="Personal portfolio and blog — ML Engineer specializing in computer vision, NLP, and MLOps.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/avatar.jpg">
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo" id="navLogo">PORTFOLIO</a>
+      <div class="nav__links">
+        <a href="index.html" class="nav__link nav__link--active">Home</a>
+        <a href="pages/blog.html" class="nav__link">Blog</a>
+        <a href="pages/research.html" class="nav__link">Research</a>
+        <a href="pages/cv.html" class="nav__link">CV</a>
+        <a href="pages/contact.html" class="nav__link">Contact</a>
+      </div>
+      <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Overlay -->
+  <div class="nav__mobile-overlay" id="navMobileOverlay">
+    <a href="index.html" class="nav__link">Home</a>
+    <a href="pages/blog.html" class="nav__link">Blog</a>
+    <a href="pages/research.html" class="nav__link">Research</a>
+    <a href="pages/cv.html" class="nav__link">CV</a>
+    <a href="pages/contact.html" class="nav__link">Contact</a>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="container">
+      <div class="hero">
+        <div class="hero__content">
+          <div class="hero__top">
+            <img class="hero__avatar" id="heroAvatar" src="" alt="Avatar" loading="lazy">
+            <div>
+              <h1 class="hero__greeting" id="heroGreeting"></h1>
+              <p class="hero__title" id="heroTitle"></p>
+            </div>
+          </div>
+          <p class="hero__bio" id="heroBio"></p>
+        </div>
+        <div class="hero__illustration">
+          <img src="assets/images/illustration/hero.png" alt="Machine Learning Flow Illustration" style="max-width: 100%; border-radius: var(--border-radius); box-shadow: var(--shadow-sm);">
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="container skills">
+      <div class="skills__list" id="skillsList"></div>
+    </section>
+
+    <!-- Latest Articles -->
+    <section class="container section">
+      <h2 class="section__title">Latest Articles</h2>
+      <div class="articles-grid" id="homeArticlesGrid"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copyright">© 2024 Alex Nguyen. All rights reserved.</p>
+      <div class="footer__links">
+        <a href="index.html" class="footer__link">Home</a>
+        <a href="pages/blog.html" class="footer__link">Blog</a>
+        <a href="pages/research.html" class="footer__link">Research</a>
+        <a href="pages/cv.html" class="footer__link">CV</a>
+        <a href="pages/contact.html" class="footer__link">Contact</a>
+      </div>
+      <div class="footer__social" id="footerSocial"></div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

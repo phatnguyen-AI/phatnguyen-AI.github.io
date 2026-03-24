@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Alex Nguyen</title>
+  <meta name="description" content="Reach out to me">
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="container nav__inner">
+      <a href="../index.html" class="nav__logo" id="navLogo">PORTFOLIO</a>
+      <div class="nav__links">
+        <a href="../index.html" class="nav__link">Home</a>
+        <a href="blog.html" class="nav__link">Blog</a>
+        <a href="research.html" class="nav__link">Research</a>
+        <a href="cv.html" class="nav__link">CV</a>
+        <a href="contact.html" class="nav__link nav__link--active">Contact</a>
+      </div>
+      <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav__mobile-overlay" id="navMobileOverlay">
+    <a href="../index.html" class="nav__link">Home</a>
+    <a href="blog.html" class="nav__link">Blog</a>
+    <a href="research.html" class="nav__link">Research</a>
+    <a href="cv.html" class="nav__link">CV</a>
+    <a href="contact.html" class="nav__link nav__link--active">Contact</a>
+  </div>
+
+  <main class="container page-contact" style="min-height:70vh;padding-top:var(--space-xl);">
+    <div class="page-header" style="text-align:center;">
+      <h1 class="page-header__title">Contact & Message Me</h1>
+      <p class="page-header__subtitle">Have a question or want to work together? Leave a message.</p>
+    </div>
+
+    <div id="contactLinks" style="display:flex;justify-content:center;gap:var(--space-lg);margin-bottom:var(--space-xl);">
+      <!-- Dynamic links injected here -->
+    </div>
+    
+    <div style="background:var(--surface);padding:var(--space-xl);border-radius:var(--border-radius);border:1px solid var(--border-color);max-width:600px;margin:0 auto;margin-bottom:var(--space-xl);">
+      <form id="messageForm" style="display:flex;flex-direction:column;gap:var(--space-md);">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md);">
+          <div>
+            <label style="display:block;margin-bottom:8px;font-size:0.9rem;font-weight:600;color:var(--text-primary);">Your Name *</label>
+            <input type="text" id="msgName" required style="width:100%;padding:12px;background:var(--bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:var(--border-radius-sm);font-family:inherit;">
+          </div>
+          <div>
+            <label style="display:block;margin-bottom:8px;font-size:0.9rem;font-weight:600;color:var(--text-primary);">Email *</label>
+            <input type="email" id="msgEmail" required style="width:100%;padding:12px;background:var(--bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:var(--border-radius-sm);font-family:inherit;">
+          </div>
+        </div>
+        <div>
+          <label style="display:block;margin-bottom:8px;font-size:0.9rem;font-weight:600;color:var(--text-primary);">Title *</label>
+          <input type="text" id="msgTitle" required style="width:100%;padding:12px;background:var(--bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:var(--border-radius-sm);font-family:inherit;">
+        </div>
+        <div>
+          <label style="display:block;margin-bottom:8px;font-size:0.9rem;font-weight:600;color:var(--text-primary);">Message *</label>
+          <textarea id="msgContent" required rows="5" style="width:100%;padding:12px;background:var(--bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:var(--border-radius-sm);resize:vertical;font-family:inherit;"></textarea>
+        </div>
+        <button type="submit" style="padding:14px;background:var(--text-primary);color:var(--bg);border:none;border-radius:var(--border-radius-sm);font-weight:600;cursor:pointer;margin-top:var(--space-sm);transition:opacity 0.2s;">Send Message</button>
+      </form>
+      <div id="messageSuccess" style="display:none;margin-top:var(--space-md);padding:12px;background:rgba(16,185,129,0.1);border:1px solid #10b981;color:#10b981;border-radius:var(--border-radius-sm);text-align:center;">
+        Your message has been sent successfully!
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copyright">© 2024 Alex Nguyen. All rights reserved.</p>
+      <div class="footer__links">
+        <a href="../index.html" class="footer__link">Home</a>
+        <a href="blog.html" class="footer__link">Blog</a>
+        <a href="research.html" class="footer__link">Research</a>
+        <a href="cv.html" class="footer__link">CV</a>
+        <a href="contact.html" class="footer__link">Contact</a>
+      </div>
+      <div class="footer__social" id="footerSocial"></div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

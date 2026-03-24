@@ -1,0 +1,38 @@
+[
+  {
+    "id": "deploying-pytorch-models-2024",
+    "title": "Deploying PyTorch Models to Production with TorchServe",
+    "slug": "deploying-pytorch-models-to-production",
+    "date": "2024-11-15",
+    "read_time": 8,
+    "tags": ["PyTorch", "MLOps", "Production", "TorchServe"],
+    "thumbnail": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=340&fit=crop",
+    "excerpt": "A comprehensive guide to deploying PyTorch models using TorchServe — from model archiving to scaling inference endpoints in production.",
+    "status": "published",
+    "content": "## Introduction\n\nDeploying machine learning models to production is one of the most critical — yet often overlooked — steps in the ML lifecycle. In this post, we'll walk through deploying a PyTorch model using **TorchServe**, an open-source model serving framework.\n\n## Why TorchServe?\n\nTorchServe provides:\n- **Easy model packaging** via Model Archive (MAR)\n- **REST/gRPC APIs** out of the box\n- **Multi-model serving** with dynamic registration\n- **Metrics & logging** for monitoring\n\n## Step 1: Archive Your Model\n\n```python\nimport torch\nfrom torchvision import models\n\n# Load pretrained ResNet50\nmodel = models.resnet50(pretrained=True)\nmodel.eval()\n\n# Save as TorchScript\nscripted = torch.jit.script(model)\nscripted.save('resnet50.pt')\n```\n\nThen create the MAR file:\n\n```bash\ntorch-model-archiver --model-name resnet50 \\\n  --version 1.0 \\\n  --serialized-file resnet50.pt \\\n  --handler image_classifier\n```\n\n## Step 2: Start TorchServe\n\n```bash\ntorchserve --start --model-store model_store \\\n  --models resnet50=resnet50.mar\n```\n\n## Step 3: Test Inference\n\n```bash\ncurl http://localhost:8080/predictions/resnet50 \\\n  -T kitten.jpg\n```\n\n## Scaling in Production\n\nFor production deployments, consider:\n1. **Kubernetes** integration for auto-scaling\n2. **NVIDIA Triton** for GPU optimization\n3. **Load balancing** across multiple instances\n\n## Conclusion\n\nTorchServe makes it straightforward to go from a trained PyTorch model to a production-ready API. Combined with Docker and Kubernetes, you can build robust ML inference pipelines that scale."
+  },
+  {
+    "id": "transformer-attention-explained",
+    "title": "Understanding Self-Attention: The Heart of Transformers",
+    "slug": "understanding-self-attention-transformers",
+    "date": "2024-09-22",
+    "read_time": 12,
+    "tags": ["Transformers", "NLP", "Deep Learning", "Attention"],
+    "thumbnail": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=340&fit=crop",
+    "excerpt": "A deep dive into the self-attention mechanism that powers modern Transformer architectures — from intuition to mathematical formulation.",
+    "status": "published",
+    "content": "## The Attention Revolution\n\nThe **Transformer architecture**, introduced in *\"Attention Is All You Need\"* (Vaswani et al., 2017), fundamentally changed how we build sequence models. At its core lies the **self-attention mechanism**.\n\n## Intuition\n\nImagine reading a sentence: *\"The cat sat on the mat because it was tired.\"*\n\nWhat does *\"it\"* refer to? A self-attention mechanism allows the model to look at all other words in the sentence and decide that *\"it\"* most likely refers to *\"cat\"*.\n\n## Mathematical Formulation\n\nGiven input embeddings $X$, we compute:\n\n```\nQ = X * W_Q  (Queries)\nK = X * W_K  (Keys)\nV = X * W_V  (Values)\n\nAttention(Q, K, V) = softmax(Q * K^T / sqrt(d_k)) * V\n```\n\n## Multi-Head Attention\n\nInstead of performing a single attention function, Transformers use **multi-head attention**:\n\n```python\nclass MultiHeadAttention(nn.Module):\n    def __init__(self, d_model, num_heads):\n        super().__init__()\n        self.num_heads = num_heads\n        self.d_k = d_model // num_heads\n        self.W_q = nn.Linear(d_model, d_model)\n        self.W_k = nn.Linear(d_model, d_model)\n        self.W_v = nn.Linear(d_model, d_model)\n        self.W_o = nn.Linear(d_model, d_model)\n    \n    def forward(self, x):\n        batch_size = x.size(0)\n        Q = self.W_q(x).view(batch_size, -1, self.num_heads, self.d_k).transpose(1,2)\n        K = self.W_k(x).view(batch_size, -1, self.num_heads, self.d_k).transpose(1,2)\n        V = self.W_v(x).view(batch_size, -1, self.num_heads, self.d_k).transpose(1,2)\n        \n        scores = torch.matmul(Q, K.transpose(-2,-1)) / math.sqrt(self.d_k)\n        attn = torch.softmax(scores, dim=-1)\n        out = torch.matmul(attn, V)\n        \n        out = out.transpose(1,2).contiguous().view(batch_size, -1, self.num_heads * self.d_k)\n        return self.W_o(out)\n```\n\n## Why It Works\n\n1. **Parallelization**: Unlike RNNs, attention processes all positions simultaneously\n2. **Long-range dependencies**: Direct connections between any two positions\n3. **Interpretability**: Attention weights show what the model focuses on\n\n## Conclusion\n\nSelf-attention is elegant in its simplicity yet powerful in its capability. Understanding this mechanism is essential for anyone working with modern NLP and computer vision models."
+  },
+  {
+    "id": "mlops-experiment-tracking",
+    "title": "MLOps Best Practices: Experiment Tracking with MLflow",
+    "slug": "mlops-experiment-tracking-mlflow",
+    "date": "2024-07-10",
+    "read_time": 6,
+    "tags": ["MLOps", "MLflow", "Experiment Tracking", "Best Practices"],
+    "thumbnail": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=340&fit=crop",
+    "excerpt": "How to set up MLflow for experiment tracking, model versioning, and reproducible ML workflows in your team.",
+    "status": "published",
+    "content": "## Why Experiment Tracking?\n\nWithout proper tracking, ML projects quickly become a mess of untraceable results. **MLflow** solves this by providing:\n\n- **Experiment logging**: Parameters, metrics, artifacts\n- **Model registry**: Version control for models\n- **Reproducibility**: Full lineage of every experiment\n\n## Getting Started\n\n```bash\npip install mlflow\nmlflow ui --port 5000\n```\n\n## Logging Experiments\n\n```python\nimport mlflow\nimport mlflow.sklearn\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import accuracy_score\n\nwith mlflow.start_run():\n    # Log parameters\n    mlflow.log_param('n_estimators', 100)\n    mlflow.log_param('max_depth', 10)\n    \n    # Train model\n    model = RandomForestClassifier(n_estimators=100, max_depth=10)\n    model.fit(X_train, y_train)\n    \n    # Log metrics\n    accuracy = accuracy_score(y_test, model.predict(X_test))\n    mlflow.log_metric('accuracy', accuracy)\n    \n    # Log model\n    mlflow.sklearn.log_model(model, 'random_forest')\n    \n    print(f'Accuracy: {accuracy:.4f}')\n```\n\n## Best Practices\n\n1. **Name your experiments** meaningfully\n2. **Log everything**: hyperparameters, data versions, environment\n3. **Use tags** to categorize runs\n4. **Set up a remote tracking server** for team collaboration\n5. **Integrate with CI/CD** for automated model deployment\n\n## Model Registry\n\nMLflow's Model Registry provides:\n- Stage transitions (Staging → Production)\n- Model versioning with annotations\n- Approval workflows\n\n## Conclusion\n\nMLflow is an essential tool in any MLOps toolkit. Start with experiment tracking, then gradually adopt the model registry and deployment features as your ML practice matures."
+  }
+]
