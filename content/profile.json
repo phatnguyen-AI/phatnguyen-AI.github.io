@@ -1,17 +1,15 @@
 {
   "name": "Phat Nguyen",
   "title": "Machine Learning Engineer",
-  "greeting": "Hi, I'm Phat Nguyen.",
-  "bio": "Passionate Machine Learning Engineer with 3+ years of experience building production-grade ML systems. Specialized in computer vision, NLP, and MLOps — turning research papers into real-world impact.",
-  "location": "Ho Chi Minh City, Vietnam",
-  "avatar_url": "assets/images/avatar.jpg",
+  "greeting": "Hi, I'm Phat.",
+  "bio": "I'm a machine learning engineer with hands-on experience building end-to-end AI projects, spanning from data pipelines to model deployment. My research focuses on Computer Vision, Small Language Models (SLM), and classical Machine Learning techniques.I'm particularly passionate about applying AI to healthcare — exploring how intelligent systems can support clinical decision-making, medical imaging analysis, and patient outcomes.Currently seeking opportunities where I can contribute to impactful, research-driven teams and continue pushing the boundaries of applied AI.",
+  "location": "Da Nang, Vietnam",
+  "avatar_url": "assets/images/illustration/0d009f3f29dda683ffcc.jpg",
   "skills": [
     "Python",
     "PyTorch",
-    "TensorFlow",
     "Scikit-learn",
     "Hugging Face",
-    "AWS SageMaker",
     "Docker",
     "MLflow",
     "Pandas",
@@ -20,9 +18,9 @@
     "FastAPI"
   ],
   "social": {
-    "email": "hello@example.com",
-    "github": "https://github.com/alexnguyen",
-    "linkedin": "https://linkedin.com/in/alexnguyen",
-    "twitter": "https://twitter.com/alexnguyen_ml"
+    "email": "tanphat6406@gmail.com",
+    "github": "https://github.com/phatnguyen-AI",
+    "linkedin": "https://www.linkedin.com/in/phatnguyenai/",
+    "twitter": ""
   }
 }
