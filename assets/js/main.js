@@ -83,42 +83,40 @@ const ICONS = {
 async function initData() {
   const prefix = getPathPrefix();
 
-  // Check if localStorage needs seeding
-  if (!load(KEYS.profile)) {
-    try {
-      const [profileRes, postsRes, researchRes, cvRes] = await Promise.all([
-        fetch(`${prefix}content/profile.json`),
-        fetch(`${prefix}content/posts.json`),
-        fetch(`${prefix}content/research.json`),
-        fetch(`${prefix}content/cv.json`)
-      ]);
+  // Always fetch the latest data to avoid caching issues
+  try {
+    const [profileRes, postsRes, researchRes, cvRes] = await Promise.all([
+      fetch(`${prefix}content/profile.json`),
+      fetch(`${prefix}content/posts.json`),
+      fetch(`${prefix}content/research.json`),
+      fetch(`${prefix}content/cv.json`)
+    ]);
 
-      if (profileRes.ok) {
-        const profile = await profileRes.json();
-        save(KEYS.profile, profile);
-      }
-
-      if (postsRes.ok) {
-        const posts = await postsRes.json();
-        save(KEYS.posts, posts);
-      }
-
-      if (researchRes.ok) {
-        const research = await researchRes.json();
-        save(KEYS.research, research);
-      }
-
-      if (cvRes.ok) {
-        const cv = await cvRes.json();
-        save(KEYS.cv_experience, cv.experience || []);
-        save(KEYS.cv_education, cv.education || []);
-        save(KEYS.cv_skills, cv.skills || []);
-        save(KEYS.cv_projects, cv.projects || []);
-        save(KEYS.cv_achievements, cv.achievements || []);
-      }
-    } catch (err) {
-      console.error('Error fetching data:', err);
+    if (profileRes.ok) {
+      const profile = await profileRes.json();
+      save(KEYS.profile, profile);
     }
+
+    if (postsRes.ok) {
+      const posts = await postsRes.json();
+      save(KEYS.posts, posts);
+    }
+
+    if (researchRes.ok) {
+      const research = await researchRes.json();
+      save(KEYS.research, research);
+    }
+
+    if (cvRes.ok) {
+      const cv = await cvRes.json();
+      save(KEYS.cv_experience, cv.experience || []);
+      save(KEYS.cv_education, cv.education || []);
+      save(KEYS.cv_skills, cv.skills || []);
+      save(KEYS.cv_projects, cv.projects || []);
+      save(KEYS.cv_achievements, cv.achievements || []);
+    }
+  } catch (err) {
+    console.error('Error fetching data:', err);
   }
 
   // Route to correct renderer
